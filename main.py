@@ -16,4 +16,7 @@ class abstractTile():
     def __init__(self, tiles, entrances):
 
         self.tilesarry= tiles 
-        self.entrancesarray = entrances
+        self.entrancesarray = entrance
+
+
+## does this work?
