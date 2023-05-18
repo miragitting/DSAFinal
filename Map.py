@@ -5,8 +5,9 @@ class Map():
         
         self.gr = nx.grid_graph((height, width))
         
-    def removeNode(self):
-        self.gr.remove_node()
+    def removeNode(self, x, y):
+        self.gr.remove_node((x,y))
         
-#    map = Map(1,5)
+    def neighbors(self, x, y):
+        return self.gr.neighbors((x,y))
 
