@@ -1,8 +1,4 @@
-#george was here
-#tanner was here
-#mira was here
-# test edit
-
+import Map
 class tile():
     
     def __init__(self, x ,y, passable):
@@ -14,14 +10,16 @@ class entrance():
     def __init__(self, border ,tiles):
         
         self.tilesarray = tiles 
-        self.borderval = border 
+        self.borderval = border
 
 class abstractTile():
     
     def __init__(self, tiles, entrances):
 
-        self.tilesarry= tiles 
-        self.entrancesarray = entrance
+        self.tilesarray= tiles []
+        self.entrancesarray = entrance[]
 
 
-## does this work?
+
+graph = Map(5, 5)
+M
