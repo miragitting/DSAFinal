@@ -5,7 +5,7 @@ class Map():
         
         self.gr = nx.grid_graph((height, width))
         
-    def removeNode():
+    def removeNode(self):
         self.gr.remove_node()
         
 #    map = Map(1,5)
