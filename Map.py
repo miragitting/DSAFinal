@@ -2,12 +2,22 @@ import networkx as nx
 class Map():
     #height, width, and have a remove function that removes a vertex
     def __init__(self, height, width):
-        
-        self.gr = nx.grid_graph((height, width))
-        
-    def removeNode(self, x, y):
-        self.gr.remove_node((x,y))
-        
-    def neighbors(self, x, y):
-        return self.gr.neighbors((x,y))
 
+        self.gr = nx.grid_graph((height, width))
+
+        self.xentrances = [(15,3),(16,3),(15,20),(16,20),(15,35),(16,35),(15,60),(16,60),
+                          (31,5),(32,5),(31,22),(32,22),(31,38),(32,38),(31,63),(32,63),
+                          (47,3),(48,3),(47,26),(48,26),(47,32),(48,32),(47,61),(48,61),]
+
+        self.yentrances = [(1,15),(1,16),(17,15),(17,16),(34,15),(34,16),(56,15),(56,16),
+                          (5,31),(5,32),(18,31),(18,32),(39,31),(39,32),(53,31),(53,32),
+                          (7,47),(7,48),(21,47),(21,48),(36,47),(36,48),(57,47),(57,48),]
+
+        self.removedNodes = [(3,13),(1,25),(2,4),(46,35),(53,23),(56,32),(31,23),(2,5),
+                          (60,60),(12,22),(18,50),(31,40),(2,31),(45,54),(23,59),(62,52),
+                          (1,43),(23,4),(25,6),(2,36),(37,52),(46,43),(23,54),(34,61),]
+
+    def removeNode():
+        self.gr.remove_node()
+
+    map = Map(64,64)
