@@ -26,6 +26,18 @@ class Map():
         #A cluster is a 16 x 16 square of nodes.
         #This function takes in a node and returns the cluster it lies on
 
+        #First, lets check to see if the node has been removed or is even in the graph
+
+        for n in self.removedNodes:
+            if(node[0] == n[0] and node[1] == n[1]):
+                return "The node passed in has previously been removed"
+
+        if(node[0] not in range(0,63) and node[1] not in range(0,63)):
+            return "The node passed is not in the graph"
+
+        #Tanner, feel free to change the returns if it does not line up with your pathfinding code.
+        #I am just returning strings for testing reasons
+
         if node[0] in range(0,15) and node[1] in range(0,15):
             return "Cluster A"
         if node[0] in range(16,31) and node[1] in range(0,15):
@@ -168,7 +180,7 @@ print(len(map.removedNodes))
 map.nodeRemover(map.removedNodes)
 print(map.gr)
 
-map.clusterFinder((32,50))
+map.clusterFinder((80,50))
 
 map.getEntrances('O')
 
