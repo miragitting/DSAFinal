@@ -138,7 +138,7 @@ class Map():
 
         if cluster == 'L':
             for i in self.entrances:
-                if i[0] >= 48 and i[0] <= 63 and i[1] >=  32 and i[1] <= 37:
+                if i[0] >= 48 and i[0] <= 63 and i[1] >=  32 and i[1] <= 47:
                     elist.append(i)
 
 
