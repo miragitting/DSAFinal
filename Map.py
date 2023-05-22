@@ -179,9 +179,9 @@ print(map.gr)
 print(len(map.removedNodes))
 map.nodeRemover(map.removedNodes)
 print(map.gr)
+# more testing
+print(map.clusterFinder((50,24)))
 
-map.clusterFinder((80,50))
+print(map.getEntrances('O'))
 
-map.getEntrances('O')
-
-nx.draw_networkx(map.gr)
+#nx.draw_networkx(map.gr)
