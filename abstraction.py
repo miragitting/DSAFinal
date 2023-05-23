@@ -61,10 +61,9 @@ class NavMesh():
 
         pass
 
-    def rectangles(self):
-        pass
 
     def merge_new(self, rect1, rect2):
+        # merging two rectangles
         polygons = [rect1, rect2]
         new_poly = unary_union(polygons)
         cent = new_poly.centroid
@@ -72,6 +71,52 @@ class NavMesh():
         y = int(cent.y)
         cent_node = (x, y)
         return cent_node
+
+    def rectangles(self):
+        # rectangulate (#cool word) each cluster based on entrances and obstacles. most likely manually for now
+        # cluster A
+        polygonsA = []
+        for x in range(0, 15):
+            for y in range(0, 15):
+                #print((x, y))
+                # first, find entrances
+                if ((x, y)) in self.graph.entrances:
+                    corner1 = (x, y)
+                    y2 = y
+                    for i in range(y):
+                        if (x, y2) is not True:
+                            corner2 = (x, y2 + 1)
+                        else:
+                            corner2 = (x, 0)
+                        y2 -= 1
+                    x3 = x
+                    for i in range(15 - x):
+                        if (x3, y) is not True:
+                            corner3 = (x3 + 1, y)
+                        else:
+                            corner3 = (0, y)
+                        x3 -= 1
+                    y3 = y
+                    for i in range(15):
+                        if (x3, y3) is not True:
+                            corner4 = (x3, y3 - 1)
+                        else:
+                            corner4 = (x3, y3)
+                        y3 -= 1
+
+                    polygonsA.append(corner1, corner2, corner3, corner4)
+        return polygonsA
+
+        # cluster B
+        #polygonsB = []
+
+        # cluster C
+
+    def obstacle_detected(self, x, y):
+        while not node[x][y]:
+            pass
+
+
 
 
 my_map = Map()
@@ -98,3 +143,4 @@ print(int(cent.y))
 new_cent = (22, 38)
 
 print(test.merge_new(polygon1, polygon2))
+print(test.rectangles())
