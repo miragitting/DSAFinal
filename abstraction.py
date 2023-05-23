@@ -83,7 +83,7 @@ print(test.graph.entrances)
 #print(list(test.graph.gr.neighbors((12, 5))))
 print(test.merge((15, 35), (14, 3)))
 
-#test
+#testing
 polygon1 = Polygon([(16, 35), (18, 32), (31, 38)])
 polygon2 = Polygon([(16, 35), (21, 47), (31, 38)])
 
