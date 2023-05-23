@@ -95,22 +95,24 @@ class NavMesh():
                 if ((x, y)) in self.graph.entrances:
                     corner1 = (x, y)
                     y2 = y
-                    for i in range(y):
-                        if (x, y2) is not True:
+                    for i in range(16):
+                        if (x, y2) in self.graph.removedNodes or x < 0 or y2 < 0: # check to see in removed list or < than edge
                             corner2 = (x, y2 + 1)
+                            break
                         else:
                             corner2 = (x, 0)
                         y2 -= 1
                     x3 = x
-                    for i in range(15 - x):
-                        if (x3, y) is not True:
+                    for i in range(16):
+                        if (x3, y) in self.graph.removedNodes or x3 < 0 or y < 0:
                             corner3 = (x3 + 1, y)
+                            break
                         else:
                             corner3 = (0, y)
                         x3 -= 1
                     y3 = y
-                    for i in range(15):
-                        if (x3, y3) is not True:
+                    for i in range(16):
+                        if (x3, y3) in self.graph.removedNodes or x3 < 0 or y3 < 0:
                             corner4 = (x3, y3 - 1)
                         else:
                             corner4 = (x3, y3)
@@ -123,6 +125,17 @@ class NavMesh():
         #polygonsB = []
 
         # cluster C
+
+
+    def rectangulate3(self):
+        # cluster A
+
+        quadrant1 = [] #
+        quadrant2 = []
+        quadrant3 = []
+        quadrant4 = []
+
+        pass
 
     def obstacle_detected(self, x, y):
         while not node[x][y]:
