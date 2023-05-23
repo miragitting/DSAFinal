@@ -6,17 +6,20 @@
 
 # list of tuples containing the vertices?
 from Map import Map
-
+#from shapely.geometry import Polygon
+#from shapely.ops import unary_union
+from shapely import *
 
 class NavMesh():
 
     def __init__(self, my_map):
         self.graph = my_map
-        self.abstract1 = []
-        self.abstract2 = []
+        #self.abstract1 = []
+        #self.abstract2 = []
 
     def triangulate(self):
-        for node in self.graph:
+        for node in self.graph.entrances:
+
             pass
 
     def merge(self, a, b):
@@ -58,15 +61,40 @@ class NavMesh():
 
         pass
 
+    def rectangles(self):
+        pass
+
+    def merge_new(self, rect1, rect2):
+        polygons = [rect1, rect2]
+        new_poly = unary_union(polygons)
+        cent = new_poly.centroid
+        x = int(cent.x)
+        y = int(cent.y)
+        cent_node = (x, y)
+        return cent_node
+
 
 my_map = Map()
 print("map generated")
-print(list(my_map.gr.neighbors((15, 3))))
+print(list(my_map.gr.neighbors((15, 35))))
 test = NavMesh(my_map)
 
 print(test.graph.entrances)
 #print(list(test.graph.gr.neighbors((12, 5))))
-print(test.merge((15, 3), (14, 3)))
+print(test.merge((15, 35), (14, 3)))
 
+#test
+polygon1 = Polygon([(16, 35), (18, 32), (31, 38)])
+polygon2 = Polygon([(16, 35), (21, 47), (31, 38)])
 
+polygons = [polygon1, polygon2]
 
+u = unary_union(polygons)
+print(u)
+cent = u.centroid
+print(cent)
+print(int(cent.x))
+print(int(cent.y))
+new_cent = (22, 38)
+
+print(test.merge_new(polygon1, polygon2))
