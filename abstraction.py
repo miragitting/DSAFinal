@@ -76,10 +76,22 @@ class NavMesh():
         # rectangulate (#cool word) each cluster based on entrances and obstacles. most likely manually for now
         # cluster A
         polygonsA = []
-        for x in range(0, 15):
-            for y in range(0, 15):
+        #corner1 = (15, 3)
+        #x = 15
+        #y = 3
+        #y2 = 3
+        #print(self.graph.entrances)
+        #for i in range(15 - y):
+        #    pass
+
+
+        for x in range(0, 16):
+            for y in range(0, 16):
                 #print((x, y))
                 # first, find entrances
+                #print(self.graph.entrances)
+                #print((x, y))
+                # THIS IS WORKING IT IS JUST LIKE ALSO NOT WORKING
                 if ((x, y)) in self.graph.entrances:
                     corner1 = (x, y)
                     y2 = y
@@ -104,7 +116,7 @@ class NavMesh():
                             corner4 = (x3, y3)
                         y3 -= 1
 
-                    polygonsA.append(corner1, corner2, corner3, corner4)
+                    polygonsA.append([corner1, corner2, corner3, corner4])
         return polygonsA
 
         # cluster B
