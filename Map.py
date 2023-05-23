@@ -1,3 +1,4 @@
+import networkx as nx
 
 class Map():
     #height, width, and have a remove function that removes a vertex
