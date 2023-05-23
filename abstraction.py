@@ -6,20 +6,20 @@
 
 # list of tuples containing the vertices?
 from Map import Map
-#from shapely.geometry import Polygon
-#from shapely.ops import unary_union
+# from shapely.geometry import Polygon
+# from shapely.ops import unary_union
 from shapely import *
+
 
 class NavMesh():
 
     def __init__(self, my_map):
         self.graph = my_map
-        #self.abstract1 = []
-        #self.abstract2 = []
+        # self.abstract1 = []
+        # self.abstract2 = []
 
     def triangulate(self):
         for node in self.graph.entrances:
-
             pass
 
     def merge(self, a, b):
@@ -61,7 +61,6 @@ class NavMesh():
 
         pass
 
-
     def merge_new(self, rect1, rect2):
         # merging two rectangles
         polygons = [rect1, rect2]
@@ -76,61 +75,63 @@ class NavMesh():
         # rectangulate (#cool word) each cluster based on entrances and obstacles. most likely manually for now
         # cluster A
         polygonsA = []
-        #corner1 = (15, 3)
-        #x = 15
-        #y = 3
-        #y2 = 3
-        #print(self.graph.entrances)
-        #for i in range(15 - y):
+        # corner1 = (15, 3)
+        # x = 15
+        # y = 3
+        # y2 = 3
+        # print(self.graph.entrances)
+        # for i in range(15 - y):
         #    pass
-
 
         for x in range(0, 16):
             for y in range(0, 16):
-                #print((x, y))
+                # print((x, y))
                 # first, find entrances
-                #print(self.graph.entrances)
-                #print((x, y))
+                # print(self.graph.entrances)
+                # print((x, y))
                 # THIS IS WORKING IT IS JUST LIKE ALSO NOT WORKING
                 if ((x, y)) in self.graph.entrances:
                     corner1 = (x, y)
                     y2 = y
                     for i in range(16):
-                        if (x, y2) in self.graph.removedNodes or x < 0 or y2 < 0: # check to see in removed list or < than edge
-                            corner2 = (x, y2 + 1)
+                        if (x, y2) in self.graph.removedNodes or x < 0 or y2 < 0:
+                            # check to see in removed list or < than edge
+                            y2 += 1
+                            corner2 = (x, y2)
                             break
                         else:
                             corner2 = (x, 0)
-                        y2 -= 1
+                            y2 -= 1
                     x3 = x
                     for i in range(16):
                         if (x3, y) in self.graph.removedNodes or x3 < 0 or y < 0:
-                            corner3 = (x3 + 1, y)
+                            x3 += 1
+                            corner3 = (x3, y)
                             break
                         else:
                             corner3 = (0, y)
-                        x3 -= 1
+                            x3 -= 1
                     y3 = y
                     for i in range(16):
-                        if (x3, y3) in self.graph.removedNodes or x3 < 0 or y3 < 0:
-                            corner4 = (x3, y3 - 1)
-                        else:
+                        if (x3, y3) in self.graph.removedNodes:#  or x3 < 0 or y3 < 0:
+                            y3 += 1
                             corner4 = (x3, y3)
-                        y3 -= 1
+                        else:
+                            corner4 = (0, 0)
+                            y3 -= 1
 
                     polygonsA.append([corner1, corner2, corner3, corner4])
         return polygonsA
 
         # cluster B
-        #polygonsB = []
+        # polygonsB = []
 
         # cluster C
-
 
     def rectangulate3(self):
         # cluster A
 
-        quadrant1 = [] #
+        quadrant1 = []  #
         quadrant2 = []
         quadrant3 = []
         quadrant4 = []
@@ -142,18 +143,16 @@ class NavMesh():
             pass
 
 
-
-
 my_map = Map()
 print("map generated")
 print(list(my_map.gr.neighbors((15, 35))))
 test = NavMesh(my_map)
 
 print(test.graph.entrances)
-#print(list(test.graph.gr.neighbors((12, 5))))
+# print(list(test.graph.gr.neighbors((12, 5))))
 print(test.merge((15, 35), (14, 3)))
 
-#testing
+# testing
 polygon1 = Polygon([(16, 35), (18, 32), (31, 38)])
 polygon2 = Polygon([(16, 35), (21, 47), (31, 38)])
 
