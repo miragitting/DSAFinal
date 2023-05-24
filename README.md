@@ -3,7 +3,9 @@
 Map.py - Map logic for the 64 64 graph of nodes. Also has cluster implementation
 
 abstraction.py - Contains logic for original Nav mesh implementation plan. 
+    
     Methods used in testing: 
+        
         merge_new: uses Shapely to merge two rectangles that share an edge and returns the centroid of the new rectangle.
         
           
