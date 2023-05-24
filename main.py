@@ -1,25 +1,13 @@
-import Map
-class tile():
-    
-    def __init__(self, x ,y, passable):
-        self.xint = x
-        self.yint = y
-        self.passablebool = passable
+from Map import *
 
-class entrance():
-    def __init__(self, border ,tiles):
-        
-        self.tilesarray = tiles 
-        self.borderval = border
+def main():
+    my_map = Map()
+    my_map.createFirstLayer()
 
-class abstractTile():
-    
-    def __init__(self, tiles, entrances):
-
-        self.tilesarray= tiles []
-        self.entrancesarray = entrance[]
+    #nx.draw_networkx(my_map.firstLayer)
+    print(my_map.findPath((3, 7), (42, 53)))
 
 
+main()
 
-graph = Map(5, 5)
-M
+

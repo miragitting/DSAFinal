@@ -1,8 +1,6 @@
 import math
 import networkx as nx
-import numpy as np
 import heapq
-from Map import Map
 
 
 class PriorityQueue():
@@ -53,10 +51,10 @@ def astar(start, goal, our_graph):
     queue = PriorityQueue()
 
     queue.put(0, start)
-    for i in gr.nodes:
+    for i in our_graph.nodes:
         if i != start:
             queue.put(INF, i)
-    # current_node = None
+
 
     while len(queue) > 0 and end not in preds:  # end not in preds
         dist_to_current, current_node = queue.pop()
@@ -65,12 +63,15 @@ def astar(start, goal, our_graph):
 
         for n in neighbors:
             # dist from source to current, dist from current to n, heuristic
-            new_dist = dist[current_node] + 1  # TODO: instead of 1, edge weight between neighbor and current node
+            try:
+                new_dist = dist[current_node] + nx.get_edge_attributes(gr, "weight")[(n, current_node)]  # TODO: instead of 1, edge weight between neighbor and current node
+            except:
+                new_dist = dist[current_node] + 1
             new_pri = new_dist + math.dist(n, end)
             if n not in dist:
                 dist[n] = new_dist
-                preds[n] = current_node
                 queue.put(new_pri, n)
+                preds[n] = current_node
             elif new_dist < dist[n]:
                 dist[n] = new_dist
                 preds[n] = current_node
