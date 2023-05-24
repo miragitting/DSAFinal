@@ -41,7 +41,7 @@ class PriorityQueue():
 INF = 99999999999999999
 
 
-def astar_AI(start, goal, our_graph):
+def astar(start, goal, our_graph):
 
     source = start
     end = goal
@@ -69,6 +69,6 @@ def astar_AI(start, goal, our_graph):
                 preds[n] = current_node
                 queue.put(new_pri, n)
     steps = [end]
-    while steps[0] is not source:
+    while steps[0] != source:
         steps.insert(0, preds[steps[0]]) # not sure if this is correct
     return steps  # or first move index [] in array

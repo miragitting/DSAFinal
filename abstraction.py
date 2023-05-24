@@ -66,29 +66,13 @@ class NavMesh():
         polygons = [rect1, rect2]
         new_poly = unary_union(polygons)
         cent = new_poly.centroid
-        x = int(cent.x)
-        y = int(cent.y)
-        cent_node = (x, y)
+        cent_node = (int(cent.x), int(cent.y))
         return cent_node
 
     def rectangles(self):
-        # rectangulate (#cool word) each cluster based on entrances and obstacles. most likely manually for now
-        # cluster A
         polygonsA = []
-        # corner1 = (15, 3)
-        # x = 15
-        # y = 3
-        # y2 = 3
-        # print(self.graph.entrances)
-        # for i in range(15 - y):
-        #    pass
-
         for x in range(0, 16):
             for y in range(0, 16):
-                # print((x, y))
-                # first, find entrances
-                # print(self.graph.entrances)
-                # print((x, y))
                 # THIS IS WORKING IT IS JUST LIKE ALSO NOT WORKING
                 if ((x, y)) in self.graph.entrances:
                     corner1 = (x, y)
@@ -156,6 +140,9 @@ print(test.merge((15, 35), (14, 3)))
 polygon1 = Polygon([(16, 35), (18, 32), (31, 38)])
 polygon2 = Polygon([(16, 35), (21, 47), (31, 38)])
 
+print("centroid value: ", test.merge_new(polygon1, polygon2))
+print("Cluster A: ", test.rectangles())
+
 polygons = [polygon1, polygon2]
 
 u = unary_union(polygons)
@@ -166,5 +153,3 @@ print(int(cent.x))
 print(int(cent.y))
 new_cent = (22, 38)
 
-print(test.merge_new(polygon1, polygon2))
-print(test.rectangles())
