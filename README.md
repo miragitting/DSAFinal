@@ -27,3 +27,9 @@
 # main.py
     includes main function for running HPA*
     
+# Future Testing
+    In the future, we would like fully analyze the O runtime of our algorithm. 
+    To make this more efficient, we would have liked to implement less hard coding into the abstraction and clustering of our map
+    As for testing, we would like to compare the time of our HPA* to other similar algorithms like Dijkstra's and regular A*
+    It would also be interesting to see how much the time this takes to run is affected by how our graph size changes,
+    how many entrances there are, and the number of obstacles in our clusters
