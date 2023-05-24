@@ -287,7 +287,7 @@ class Map():
 
     #findPath passes start and goal. It finds a path between start and goal 
     def findPath(self, start, goal):
-        # get the cluster of start
+        # get the cluster of start and goal
         start_cluster = self.getCluster(start)
         goal_cluster = self.getCluster(goal)
 
@@ -296,6 +296,8 @@ class Map():
 
         startEntrances = self.getEntrances(start_cluster)
         startPaths = []
+        # now find a path to every entrance in start cluster
+        # then add a start node with edeges to enteancrs
         for entrance in startEntrances:
             startPaths.append(astar(start, entrance, self.actual))
             self.firstLayer.add_edge(start, entrance, weight = len(startPaths[-1])-1)
@@ -311,6 +313,9 @@ class Map():
         #perform a star from start to goal on first layer of abstraction
         abstractMoves = astar(start, goal, self.firstLayer)
         print("abstract moves: ", abstractMoves)
+        
+        # now we want to return the moves on the actaul map that make ip the 
+        # first abstract move
         for i in startPaths:
             if i[-1] == abstractMoves[1]:
                 return i
