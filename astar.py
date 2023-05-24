@@ -52,7 +52,11 @@ def astar(start, goal, our_graph):
     dist = {start: 0}
     queue = PriorityQueue()
 
-    current_node = None
+    queue.put(0, start)
+    for i in gr.nodes:
+        if i != start:
+            queue.put(INF, i)
+    # current_node = None
 
     while len(queue) > 0 and end not in preds:  # end not in preds
         dist_to_current, current_node = queue.pop()
@@ -63,8 +67,11 @@ def astar(start, goal, our_graph):
             # dist from source to current, dist from current to n, heuristic
             new_dist = dist[current_node] + 1  # TODO: instead of 1, edge weight between neighbor and current node
             new_pri = new_dist + math.dist(n, end)
-
-            if new_dist < dist[n]:
+            if n not in dist:
+                dist[n] = new_dist
+                preds[n] = current_node
+                queue.put(new_pri, n)
+            elif new_dist < dist[n]:
                 dist[n] = new_dist
                 preds[n] = current_node
                 queue.put(new_pri, n)
