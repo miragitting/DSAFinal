@@ -20,3 +20,6 @@
         Utilizes most of the logic from Snake but sets the start node at index 0 of the priority queue.
         All other nodes are added to the graph after that in order. 
         Becuase obstacles are removed nodes, we did not implement logic in this to remove obstacle nodes from the graph
+        
+    main.py - includes main function for running HPA*
+    
