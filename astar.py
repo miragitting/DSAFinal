@@ -41,54 +41,27 @@ class PriorityQueue():
 INF = 99999999999999999
 
 
-def astar_AI(start, goal):
-    # source = np.array(np.where(bstate == -2))
-    # target = np.array(np.where(bstate == 1))
-    # do these have to be specified as anything?
+def astar_AI(start, goal, our_graph):
+
     source = start
-    target = goal
+    end = goal
 
-    # obstacles = np.array(np.where(bstate < 0))
-
-    # x_source = source[0][0]
-    # y_source = source[1][0]
-
-    # x_target = target[0][0]
-    # y_target = target[1][0]
-
-    # start = (x_source, y_source)
-    # will end just be the goal ?
-    # end = (x_target, y_target)
-
-    gr = Map()
+    gr = our_graph
 
     preds = {start: None}
     dist = {start: 0}
     queue = PriorityQueue()
 
-    # # do we have to worry about this? obstacles will already be removed from graph
-    # for i in range(bstate.shape[0]):
-    #     for j in range(bstate.shape[1]):
-    #         if bstate[i, j] == -1:
-    #             gr.remove_node((i, j))
-    #             # nothing happens w pq
-    #         elif bstate[i, j] == -2:
-    #             queue.put(0, (i, j))
-    #
-    #         else:
-    #             queue.put(INF, (i, j))
-    #             dist[(i, j)] = INF
-
     current_node = None
 
-    while len(queue) > 0 and current_node != end:  # end not in preds
+    while len(queue) > 0 and end not in preds:  # end not in preds
         dist_to_current, current_node = queue.pop()
 
         neighbors = gr.neighbors(current_node)
 
         for n in neighbors:
             # dist from source to current, dist from current to n, heuristic
-            new_dist = dist[current_node] + 1  # edge weight between neighbor and current node
+            new_dist = dist[current_node] + 1  # TODO: instead of 1, edge weight between neighbor and current node
             new_pri = new_dist + math.dist(n, end)
 
             if new_dist < dist[n]:
@@ -97,9 +70,5 @@ def astar_AI(start, goal):
                 queue.put(new_pri, n)
     steps = [end]
     while steps[0] is not source:
-        # insert pred of what is at index[0] at [0]
         steps.insert(0, preds[steps[0]]) # not sure if this is correct
     return steps  # or first move index [] in array
-    # print(queue)
-    #  chain of preds ?
-    # subtract x's and y's from eachother
